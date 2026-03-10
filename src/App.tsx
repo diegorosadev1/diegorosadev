@@ -6,7 +6,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
-import Hero from './components/layout/Hero';
+import Hero from './components/sections/Hero';
 import About from './components/sections/About';
 import TechStack from './components/sections/TechStack';
 import Education from './components/sections/Education';

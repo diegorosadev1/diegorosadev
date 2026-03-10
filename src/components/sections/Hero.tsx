@@ -66,7 +66,7 @@ const Hero = () => {
         >
           <div className="relative z-10 rounded-3xl overflow-hidden border border-white/10 aspect-[4/5] max-w-md mx-auto shadow-2xl">
             <img
-              src="https://scontent.fcpq17-1.fna.fbcdn.net/v/t51.82787-15/513509996_18084435244739400_7936775074144372357_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=13d280&_nc_ohc=pIZRBI-gw7gQ7kNvwGWCvQr&_nc_oc=Adm5be3TfnW1P4MpeL8LQTyqHIUH1i9Xul1xznnTwWc4HpiNpsY0fI3HUPqSv-t1y9Qg-V0eDI2YCUxzPJ1P0kHO&_nc_zt=23&_nc_ht=scontent.fcpq17-1.fna&_nc_gid=0yOQyxSILqHiVTgxzzhRNw&_nc_ss=8&oh=00_AfwyZrZnc2s5EQxUefRlklcpBik7urItbysxKKZUvZRoQw&oe=69B49FA9"
+              src="public\assets\img\profile.png"
               alt="Diego Rosa"
               className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
               referrerPolicy="no-referrer"

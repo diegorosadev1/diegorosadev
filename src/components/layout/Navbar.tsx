@@ -33,23 +33,28 @@ const Navbar = () => {
       e.preventDefault();
       const id = href.replace("/#", "");
       const element = document.getElementById(id);
+
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
+
       setIsMobileMenuOpen(false);
     }
   };
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-navy-900/90 backdrop-blur-lg border-b border-white/10 py-4 shadow-2xl" : "bg-transparent py-6"}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-navy-900/90 backdrop-blur-lg border-b border-white/10 py-3 shadow-2xl"
+          : "bg-transparent py-4"
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <nav className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          <Logo size="xxl" />
-        </nav>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+        <div className="flex items-center max-w-[180px] sm:max-w-none">
+          <Logo size="xl" />
+        </div>
 
-        {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link, i) => (
             <motion.div
@@ -76,6 +81,7 @@ const Navbar = () => {
               )}
             </motion.div>
           ))}
+
           <motion.a
             href="/#contact"
             onClick={(e) => handleLinkClick(e, "/#contact")}
@@ -87,32 +93,31 @@ const Navbar = () => {
           </motion.a>
         </div>
 
-        {/* Mobile Toggle */}
         <button
-          className="md:hidden text-soft-white"
+          className="md:hidden text-soft-white p-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-navy-800 border-b border-white/10 overflow-hidden"
+            className="md:hidden bg-navy-800/95 backdrop-blur-lg border-b border-white/10 overflow-hidden"
           >
-            <div className="flex flex-col p-6 gap-4">
+            <div className="flex flex-col px-4 py-5 gap-4">
               {navLinks.map((link) => (
                 <React.Fragment key={link.name}>
                   {link.href.startsWith("/#") ? (
                     <a
                       href={link.href}
                       onClick={(e) => handleLinkClick(e, link.href)}
-                      className="text-lg font-medium text-soft-white/80 hover:text-accent"
+                      className="text-base font-medium text-soft-white/80 hover:text-accent"
                     >
                       {link.name}
                     </a>
@@ -120,13 +125,21 @@ const Navbar = () => {
                     <Link
                       to={link.href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-lg font-medium text-soft-white/80 hover:text-accent"
+                      className="text-base font-medium text-soft-white/80 hover:text-accent"
                     >
                       {link.name}
                     </Link>
                   )}
                 </React.Fragment>
               ))}
+
+              <a
+                href="/#contact"
+                onClick={(e) => handleLinkClick(e, "/#contact")}
+                className="mt-2 inline-flex items-center justify-center px-5 py-3 bg-accent text-navy-900 rounded-xl font-bold"
+              >
+                Hire Me
+              </a>
             </div>
           </motion.div>
         )}
