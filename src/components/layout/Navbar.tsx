@@ -12,6 +12,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -31,75 +32,85 @@ const Navbar = () => {
   ) => {
     if (href.startsWith("/#") && isHome) {
       e.preventDefault();
+
       const id = href.replace("/#", "");
       const element = document.getElementById(id);
 
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
-
-      setIsMobileMenuOpen(false);
     }
+
+    setIsMobileMenuOpen(false);
   };
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-navy-900/90 backdrop-blur-lg border-b border-white/10 py-3 shadow-2xl"
-          : "bg-transparent py-4"
+          ? "bg-navy-900/90 backdrop-blur-lg border-b border-white/10 shadow-2xl"
+          : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        <div className="flex items-center max-w-[180px] sm:max-w-none">
-          <Logo size="xxl" />
-        </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-[84px] md:h-[96px]">
+          <Link to="/" className="flex items-center shrink-0">
+            <div className="block md:hidden max-w-[130px]">
+              <Logo size="lg" />
+            </div>
 
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link, i) => (
-            <motion.div
-              key={link.name}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
+            <div className="hidden md:block max-w-[220px]">
+              <Logo size="xxl" />
+            </div>
+          </Link>
+
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link, i) => (
+              <motion.div
+                key={link.name}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+              >
+                {link.href.startsWith("/#") ? (
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                    className="text-sm font-medium text-soft-white/70 hover:text-accent transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                ) : (
+                  <Link
+                    to={link.href}
+                    className="text-sm font-medium text-soft-white/70 hover:text-accent transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                )}
+              </motion.div>
+            ))}
+
+            <motion.a
+              href="/#contact"
+              onClick={(e) => handleLinkClick(e, "/#contact")}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="px-5 py-2 bg-accent text-navy-900 rounded-full text-sm font-bold hover:glow-green transition-all"
             >
-              {link.href.startsWith("/#") ? (
-                <a
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
-                  className="text-sm font-medium text-soft-white/70 hover:text-accent transition-colors"
-                >
-                  {link.name}
-                </a>
-              ) : (
-                <Link
-                  to={link.href}
-                  className="text-sm font-medium text-soft-white/70 hover:text-accent transition-colors"
-                >
-                  {link.name}
-                </Link>
-              )}
-            </motion.div>
-          ))}
+              Hire Me
+            </motion.a>
+          </div>
 
-          <motion.a
-            href="/#contact"
-            onClick={(e) => handleLinkClick(e, "/#contact")}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="px-5 py-2 bg-accent text-navy-900 rounded-full text-sm font-bold hover:glow-green transition-all"
+          <button
+            className="md:hidden text-soft-white p-2 shrink-0"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
           >
-            Hire Me
-          </motion.a>
+            {isMobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
         </div>
-
-        <button
-          className="md:hidden text-soft-white p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
-        </button>
       </div>
 
       <AnimatePresence>
@@ -110,14 +121,14 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-navy-800/95 backdrop-blur-lg border-b border-white/10 overflow-hidden"
           >
-            <div className="flex flex-col px-4 py-5 gap-4">
+            <div className="flex flex-col px-4 pb-6 gap-4">
               {navLinks.map((link) => (
                 <React.Fragment key={link.name}>
                   {link.href.startsWith("/#") ? (
                     <a
                       href={link.href}
                       onClick={(e) => handleLinkClick(e, link.href)}
-                      className="text-base font-medium text-soft-white/80 hover:text-accent"
+                      className="text-base font-medium text-soft-white/80 hover:text-accent transition-colors"
                     >
                       {link.name}
                     </a>
@@ -125,7 +136,7 @@ const Navbar = () => {
                     <Link
                       to={link.href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-base font-medium text-soft-white/80 hover:text-accent"
+                      className="text-base font-medium text-soft-white/80 hover:text-accent transition-colors"
                     >
                       {link.name}
                     </Link>
