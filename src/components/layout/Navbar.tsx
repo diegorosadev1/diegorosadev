@@ -52,7 +52,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         <div className="flex items-center max-w-[180px] sm:max-w-none">
-          <Logo size="xl" />
+          <Logo size="xxl" />
         </div>
 
         <div className="hidden md:flex items-center gap-8">
