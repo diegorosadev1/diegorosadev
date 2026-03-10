@@ -2,26 +2,36 @@ import React from 'react';
 import { motion } from 'motion/react';
 
 const Experience = () => {
-  const experiences = [
-    {
-      role: 'Frontend Engineer',
-      company: 'TechFlow Systems',
-      period: '2022 - Present',
-      description: 'Leading the development of modern web applications using React and Next.js. Architecting scalable frontend solutions and mentoring junior developers.'
-    },
-    {
-      role: 'Frontend Developer',
-      company: 'Creative Digital Agency',
-      period: '2020 - 2022',
-      description: 'Built performant user interfaces for diverse clients. Focused on responsive design, accessibility, and smooth animations.'
-    },
-    {
-      role: 'Software Developer',
-      company: 'StartUp Hub',
-      period: '2019 - 2020',
-      description: 'Full-stack development using Node.js and React. Contributed to the core product development and API design.'
-    }
-  ];
+ const experiences = [
+  {
+    role: "Frontend Engineer",
+    company: "Self-employed",
+    period: "Feb 2025 - Present",
+    description:
+      "Developing modern full-stack web applications, contributing from frontend implementation to architecture, infrastructure, and deployment. Working with React (Vite), Next.js, TypeScript, Node.js and NestJS to build scalable systems and well-structured APIs. Experience integrating LLMs such as Groq and Gemini to automate workflows and build conversational interfaces."
+  },
+  {
+    role: "Front-end Developer Pleno",
+    company: "Mobiis",
+    period: "Mar 2024 - Jan 2025",
+    description:
+      "Developed and evolved interfaces for B2B logistics products, focusing on performance, scalability, and architectural organization. Built responsive applications with React and TypeScript, integrated REST APIs, implemented testing with Jest and React Testing Library, and collaborated with designers and product managers to deliver high-quality solutions."
+  },
+  {
+    role: "Front-end Developer Junior",
+    company: "Synvia",
+    period: "Jul 2022 - Sep 2023",
+    description:
+      "Worked on healthcare applications focusing on usability, accessibility, and performance. Developed reusable components using React and Angular, integrated internal REST APIs, implemented automated tests with Jest and React Testing Library, and participated actively in agile ceremonies and code reviews."
+  },
+  {
+    role: "Software Developer Intern",
+    company: "CAEP",
+    period: "Apr 2021 - Jun 2022",
+    description:
+      "Developed and maintained web interfaces for pharmaceutical systems. Worked primarily with Angular and Bootstrap, implemented components in React, fixed layout issues and bugs, improved accessibility, and supported the maintenance of legacy systems."
+  }
+];
 
   return (
     <section id="experience" className="py-24">
